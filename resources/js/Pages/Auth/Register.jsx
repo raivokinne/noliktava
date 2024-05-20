@@ -23,7 +23,7 @@ export default function Register() {
         
             <div className=" w-screen h-screen flex justify-center items-center bg-slate-200">
 
-                <div className="  h-max w-4/12">
+                <div className="  h-max w-[400px]">
                     <h1 className=" text-center font-bold text-2xl mb-2">Register your account</h1>
                     <div className=' p-3 bg-slate-50 rounded-md shadow-xl'>
                         <form onSubmit={submit}>
