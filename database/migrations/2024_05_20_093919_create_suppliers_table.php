@@ -11,13 +11,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create(
-            'storages', function (Blueprint $table) {
+            'suppliers', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('product_id')->constrained();
-             $table->foreignId('shelf_id')->constrained();
-                $table->foreignId('supplier_id')->constrained(); 
-                $table->integer('quantity');
-                $table->enum('status', ['available', 'reserved', 'sold', 'damaged'])->default('available');
+                $table->string('name');
+                $table->string('address');
+                $table->string('phone');
+                $table->softDeletes();
                 $table->timestamps();
             }
         );
@@ -28,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('storages');
+        Schema::dropIfExists('suppliers');
     }
 };
