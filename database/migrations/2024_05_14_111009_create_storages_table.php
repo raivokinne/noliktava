@@ -13,8 +13,10 @@ return new class extends Migration {
         Schema::create(
             'storages', function (Blueprint $table) {
                 $table->id();
-
                 $table->timestamps();
+                $table->foreignId('product_id')->constrained('products');
+                $table->unsignedInteger('available_at');
+
             }
         );
     }
