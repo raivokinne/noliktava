@@ -15,6 +15,9 @@ class IsWorker
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (!$request->user()->role === 'worker') {
+            abort(403);
+        }
         return $next($request);
     }
 }
