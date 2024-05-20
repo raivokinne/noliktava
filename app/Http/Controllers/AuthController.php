@@ -55,11 +55,13 @@ class AuthController extends Controller
 
     public function registerStore(Request $request)
     {
+        // dd($request);
         $request->validate(
             [
                 'name' => 'required|min:3|max:255',
                 'email' => 'required|email|min:3|max:255|unique:users,email',
-                'password' => 'required|min:3|max:255|confirmed'
+                'password' => 'required|min:3|max:255|confirmed',
+                'role' => 'required|string'
             ]
         );
 
