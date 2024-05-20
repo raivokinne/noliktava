@@ -21,6 +21,7 @@ return new class extends Migration
                 $table->foreignId('supplier_id')->constrained('suppliers');
                 $table->integer('stock');
                 $table->boolean('active')->default(true);
+                $table->enum('condition', ['new', ' barley used ', 'used'])->default('new');
                 $table->softDeletes();
                 $table->timestamps();
             }

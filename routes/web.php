@@ -25,3 +25,14 @@ Route::delete('/storage/{storage}', [StorageController::class, 'destroy'])->name
 Route::put('/storage/{storage}', [StorageController::class, 'update'])->name('storage.update');
 Route::post('/storage', [StorageController::class, 'store'])->name('storage.store');
 Route::get('/storage/create', [StorageController::class, 'create'])->name('storage.create');
+
+
+Route::get('/shelfs', [StorageController::class, 'index'])->name('shelf.index');
+Route::get('/shelfs/{shelf}', [StorageController::class, 'show'])->name('shelf.show');
+Route::get('/shelfs/{shelf}/edit', [StorageController::class, 'edit'])->name('shelf.edit');
+Route::put('/shelfs/{shelf}/update', [StorageController::class, 'update'])->name('shelf.update');
+Route::post('/shelfs', [StorageController::class, 'store'])->name('shelf.store');
+Route::get('/shelfs/create', [StorageController::class, 'create'])->name('shelf.create');
+
+
+
