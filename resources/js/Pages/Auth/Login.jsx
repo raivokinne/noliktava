@@ -21,8 +21,8 @@ export default function Login(){
         
             <div className=" w-screen h-screen flex justify-center items-center bg-slate-200">
                 <div className=" ">
-                    <h1 className=" text-center font-bold text-2xl mb-2">Login</h1>
-                    <div className='bg-slate-50 h-max w-[400px] p-3 rounded-md'>
+                    <h1 className=" text-center font-black text-3xl mb-2">Login</h1>
+                    <div className='bg-slate-50 h-max w-[400px] p-3 rounded-md shadow-2xl shadow-slate-300'>
                         <form onSubmit={submit}>    
                             <div className=" flex flex-col gap-2">
                                 <input 
@@ -59,7 +59,7 @@ export default function Login(){
                                 <div>
                                     <button 
                                         type='submit'
-                                        className=" text-white font-bold bg-sky-600 hover:bg-sky-500 p-2 w-1/3 rounded "
+                                        className=" text-white font-bold bg-sky-600 hover:bg-sky-500 focus:bg-sky-500 p-2 w-1/3 rounded "
                                     >
                                         Login
                                     </button>
