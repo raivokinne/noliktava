@@ -15,6 +15,9 @@ class IsSortert
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (!auth()->user()->role == 'sorter') {
+            abort(403);
+        }
         return $next($request);
     }
 }
