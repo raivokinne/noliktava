@@ -24,21 +24,21 @@ export default function Register() {
             <div className=" w-screen h-screen flex justify-center items-center bg-slate-200">
 
                 <div className="  h-max w-[400px]">
-                    <h1 className=" text-center font-bold text-2xl mb-2">Register your account</h1>
-                    <div className=' p-3 bg-slate-50 rounded-md shadow-xl'>
+                    <h1 className=" text-center font-black text-3xl mb-2">Register your account</h1>
+                    <div className=' p-3 bg-slate-50 rounded-md shadow-2xl shadow-slate-300'>
                         <form onSubmit={submit}>
 
                         <div className=" flex flex-col gap-2">
                             
                             <input 
-                                className=' rounded placeholder-gray-500'
+                                className=' rounded placeholder-gray-500 shadow'
                                 type="text" 
                                 placeholder="name" 
                                 name="name"
                                 onChange={(e) => setData('name', e.target.value)}
                             />
                             <input 
-                                className=' rounded placeholder-gray-500'
+                                className=' rounded placeholder-gray-500 shadow'
                                 type="email" 
                                 placeholder="email" 
                                 name="email"
@@ -46,7 +46,7 @@ export default function Register() {
                                 onChange={(e) => setData('email', e.target.value)}
                             />
                             <input 
-                                className=' rounded placeholder-gray-500'
+                                className=' rounded placeholder-gray-500 shadow'
                                 type="password" 
                                 placeholder="password"
                                 name="password"
@@ -55,14 +55,14 @@ export default function Register() {
                                 onChange={(e) => setData('password', e.target.value)}
                             />
                             <input 
-                                className=' rounded placeholder-gray-500'
+                                className=' rounded placeholder-gray-500 shadow'
                                 type="password" 
                                 placeholder="confirm password" 
                                 name="password_confirmation"
                                 onChange={(e) => setData('password_confirmation', e.target.value)}
                             />
                             <select 
-                                className=' rounded text-gray-500'
+                                className=' rounded text-gray-500 shadow'
                                 name="role"
                                 onChange={(e) => setData('role', e.target.value)}
                             >
@@ -74,7 +74,7 @@ export default function Register() {
                             <div className=''>
                                 <button 
                                     type='submit' 
-                                    className=" text-white font-bold bg-sky-600 hover:bg-sky-500 p-2 w-1/3 rounded "
+                                    className=" text-white font-bold bg-sky-600 focus:bg-sky-500 hover:bg-sky-500 p-2 w-1/3 rounded "
                                 >
                                     Login
                                 </button>
