@@ -55,7 +55,6 @@ class AuthController extends Controller
 
     public function registerStore(Request $request)
     {
-        // dd($request);
         $request->validate(
             [
                 'name' => 'required|min:3|max:255',

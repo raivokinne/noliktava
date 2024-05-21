@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function shelves()
+    {
+        return $this->belongsTo(Shelf::class);
+    }
 }
