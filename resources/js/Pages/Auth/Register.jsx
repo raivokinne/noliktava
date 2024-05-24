@@ -133,7 +133,7 @@ export default function Register() {
                                     type="submit"
                                     className="w-full p-2 font-bold text-white bg-black"
                                 >
-                                    Login
+                                    Register
                                 </button>
                                 <Link
                                     href="/"
