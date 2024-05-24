@@ -13,7 +13,7 @@ Route::get(
     function () {
         return Inertia::render('Dashboard/Index');
     }
-)->name('dashboard')->middleware(IsAdmin::class);
+)->name('dashboard')->middleware('auth');
 
 Route::get('/', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
