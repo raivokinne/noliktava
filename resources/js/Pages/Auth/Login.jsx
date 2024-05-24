@@ -9,7 +9,6 @@ export default function Login() {
 
     const submit = (e) => {
         e.preventDefault();
-        // console.log(data);
 
         post(route("login.store"));
     };
