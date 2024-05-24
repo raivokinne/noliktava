@@ -3,17 +3,6 @@ import Edit from "./Edit";
 import Authenticated from "@/Layouts/AuthedLayout";
 
 export default function Index({ users }) {
-    const [selectedUser, setSelectedUser] = useState(null);
-    console.log(users);
-
-    const handleUserClick = (user) => {
-        setSelectedUser(user);
-        // <Link href={`/users/${user}`} />
-    };
-
-    const handleCloseModal = () => {
-        setSelectedUser(null);
-    };
 
     const formatDate = (isoString) => {
         const options = { year: "numeric", month: "long", day: "numeric" };
@@ -153,9 +142,6 @@ export default function Index({ users }) {
                                             <span>
                                                 <button
                                                     className="px-4 py-2 font-semibold tracking-wide text-white bg-indigo-600 rounded-md cursor-pointer hover:bg-indigo-500"
-                                                    onClick={() =>
-                                                        handleUserClick(user)
-                                                    }
                                                 >
                                                     edit user
                                                 </button>
@@ -182,9 +168,7 @@ export default function Index({ users }) {
                     </div>
                 </div>
             </div>
-            {selectedUser && (
-                <Edit user={selectedUser} onClose={handleCloseModal} />
-            )}
+
         </Authenticated>
     );
 }
