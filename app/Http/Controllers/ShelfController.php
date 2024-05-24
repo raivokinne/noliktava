@@ -38,7 +38,7 @@ class ShelfController extends Controller
             [
                 'name' => 'required|min:3|max:255',
                 'product_id' => 'required',
-                'storage_id' => 'required',
+
             ]
         );
         $shelf = Shelf::find($id);
@@ -46,7 +46,6 @@ class ShelfController extends Controller
         $shelf->active = 1;
         $shelf->user_id = auth()->user()->id;
         $shelf->product_id = $request->product_id;
-        $shelf->storage_id = $request->storage_id;
         $shelf->save();
         return redirect()->route('shelf.index');
     }
