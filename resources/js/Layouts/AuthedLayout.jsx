@@ -5,9 +5,9 @@ export default function Authenticated({children}){
 
     return (
         <div>
-            <head>
+            <div>
                 <h1>I am head</h1>
-            </head>
+            </div>
             <main>{children}</main>
         </div>
     );
