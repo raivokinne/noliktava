@@ -4,7 +4,6 @@ import Authenticated from "@/Layouts/AuthedLayout";
 
 export default function Index({ users }) {
     const [selectedUser, setSelectedUser] = useState(null);
-    console.log(users);
 
     const handleUserClick = (user) => {
         setSelectedUser(user);
@@ -32,34 +31,11 @@ export default function Index({ users }) {
                     </div>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center p-2 rounded-md bg-gray-50">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-5 h-5 text-gray-400"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
                             <input
-                                className="block ml-1 outline-none bg-gray-50"
+                                className="w-[400px] border border-black rounded-full p-2 px-4 bg-gray-50"
                                 type="text"
                                 placeholder="search..."
                             />
-                        </div>
-                        <div className="ml-10 space-x-8 lg:ml-40">
-                            <button className="px-4 py-2 font-semibold tracking-wide text-white bg-indigo-600 rounded-md cursor-pointer">
-                                New Report
-                            </button>
-                            <button className="px-4 py-2 font-semibold tracking-wide text-white bg-indigo-600 rounded-md cursor-pointer">
-                                Create
-                            </button>
-                            <button className="px-4 py-2 font-semibold tracking-wide text-white bg-indigo-600 rounded-md cursor-pointer">
-                                <a href="/logout">Logout</a>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -77,14 +53,8 @@ export default function Index({ users }) {
                                     <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                         Created at
                                     </th>
-                                    {/* <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                        QRT
-                                    </th> */}
                                     <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                         Status
-                                    </th>
-                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                        Options
                                     </th>
                                 </tr>
                             </thead>
@@ -92,20 +62,30 @@ export default function Index({ users }) {
                                 {users.map((user, index) => (
                                     <tr key={index}>
                                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                            <div className="flex items-center">
-                                                <div className="flex-shrink-0 w-10 h-10">
-                                                    <img
-                                                        className="w-full h-full rounded-full"
-                                                        src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"
-                                                        alt=""
-                                                    />
+                                            <a href={`/users/${user.id}`}>
+                                                <div className="flex items-center">
+                                                    <div className="flex-shrink-0 w-10 h-10">
+                                                        {user.image ? (
+                                                            <img
+                                                                className="w-10 h-10 rounded-full"
+                                                                src={user.image}
+                                                                alt=""
+                                                            />
+                                                        ) : (
+                                                            <img
+                                                                className="w-10 h-10 rounded-full"
+                                                                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                                                alt=""
+                                                            />
+                                                        )}
+                                                    </div>
+                                                    <div className="ml-3">
+                                                        <p className="text-gray-900 whitespace-no-wrap">
+                                                            {user.name}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                <div className="ml-3">
-                                                    <p className="text-gray-900 whitespace-no-wrap">
-                                                        {user.name}
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            </a>
                                         </td>
                                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                             <p className="text-gray-900 whitespace-no-wrap">
@@ -117,11 +97,6 @@ export default function Index({ users }) {
                                                 {formatDate(user.created_at)}
                                             </p>
                                         </td>
-                                        {/* <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                            <p className="text-gray-900 whitespace-no-wrap">
-                                                {user.qrt}
-                                            </p>
-                                        </td> */}
                                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                             <span
                                                 className={`relative inline-block px-3 py-1 font-semibold leading-tight ${
@@ -149,18 +124,6 @@ export default function Index({ users }) {
                                                 </span>
                                             </span>
                                         </td>
-                                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                            <span>
-                                                <button
-                                                    className="px-4 py-2 font-semibold tracking-wide text-white bg-indigo-600 rounded-md cursor-pointer hover:bg-indigo-500"
-                                                    onClick={() =>
-                                                        handleUserClick(user)
-                                                    }
-                                                >
-                                                    edit user
-                                                </button>
-                                            </span>
-                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -182,9 +145,6 @@ export default function Index({ users }) {
                     </div>
                 </div>
             </div>
-            {selectedUser && (
-                <Edit user={selectedUser} onClose={handleCloseModal} />
-            )}
         </Authenticated>
     );
 }
