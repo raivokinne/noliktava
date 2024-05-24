@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Show from "./Show";
+import Edit from "./Edit";
 import Authenticated from "@/Layouts/AuthedLayout";
 import { Link } from "@inertiajs/react";
 
@@ -161,7 +161,7 @@ export default function Index({users}){
                     </div>
                 </div>
             </div>
-            {selectedUser && <Show user={selectedUser} onClose={handleCloseModal} />}
+            {selectedUser && <Edit user={selectedUser} onClose={handleCloseModal} />}
         </Authenticated>
 
     )
