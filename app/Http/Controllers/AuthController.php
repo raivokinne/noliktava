@@ -27,7 +27,7 @@ class AuthController extends Controller
         if (auth()->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }
 
         return back()->withErrors(
@@ -45,7 +45,7 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('home');
+        return redirect()->route('dashboard');
     }
 
     public function register()
@@ -65,7 +65,7 @@ class AuthController extends Controller
             ]
         );
 
-        
+
 
         $formData['password'] = bcrypt($formData['password']);
 
@@ -73,6 +73,6 @@ class AuthController extends Controller
 
         auth()->login($user);
 
-        return redirect()->route('home');
+        return redirect()->route('dashboard');
     }
 }
