@@ -36,21 +36,21 @@ Route::middleware(IsAdmin::class)->group(function () {
 
 
 
-Route::get('/storage', [StorageController::class, 'index'])->name('storage.index');
-Route::get('/storage/{storage}', [StorageController::class, 'show'])->name('storage.show');
-Route::get('/storage/{storage}/edit', [StorageController::class, 'edit'])->name('storage.edit');
-Route::delete('/storage/{storage}', [StorageController::class, 'destroy'])->name('storage.destroy');
-Route::put('/storage/{storage}', [StorageController::class, 'update'])->name('storage.update');
-Route::post('/storage', [StorageController::class, 'store'])->name('storage.store');
-Route::get('/storage/create', [StorageController::class, 'create'])->name('storage.create');
+// Route::get('/storage', [StorageController::class, 'index'])->name('storage.index');
+// Route::get('/storage/{storage}', [StorageController::class, 'show'])->name('storage.show');
+// Route::get('/storage/{storage}/edit', [StorageController::class, 'edit'])->name('storage.edit');
+// Route::delete('/storage/{storage}', [StorageController::class, 'destroy'])->name('storage.destroy');
+// Route::put('/storage/{storage}', [StorageController::class, 'update'])->name('storage.update');
+// Route::post('/storage', [StorageController::class, 'store'])->name('storage.store');
+// Route::get('/storage/create', [StorageController::class, 'create'])->name('storage.create');
 
 
-Route::get('/shelfs', [StorageController::class, 'index'])->name('shelf.index');
-Route::get('/shelfs/{shelf}', [StorageController::class, 'show'])->name('shelf.show');
-Route::get('/shelfs/{shelf}/edit', [StorageController::class, 'edit'])->name('shelf.edit');
-Route::put('/shelfs/{shelf}/update', [StorageController::class, 'update'])->name('shelf.update');
-Route::post('/shelfs', [StorageController::class, 'store'])->name('shelf.store');
-Route::get('/shelfs/create', [StorageController::class, 'create'])->name('shelf.create');
+// Route::get('/shelfs', [StorageController::class, 'index'])->name('shelf.index');
+// Route::get('/shelfs/{shelf}', [StorageController::class, 'show'])->name('shelf.show');
+// Route::get('/shelfs/{shelf}/edit', [StorageController::class, 'edit'])->name('shelf.edit');
+// Route::put('/shelfs/{shelf}/update', [StorageController::class, 'update'])->name('shelf.update');
+// Route::post('/shelfs', [StorageController::class, 'store'])->name('shelf.store');
+// Route::get('/shelfs/create', [StorageController::class, 'create'])->name('shelf.create');
 
 
 

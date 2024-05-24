@@ -1,7 +1,16 @@
+import Authenticated from "@/Layouts/AuthedLayout";
+
+
 export default function Welcome() {
     return (
         <>
-            <h1>Welcome</h1>
+            <Authenticated>
+
+                <div>
+                    This is the Welcome page
+                </div>
+
+            </Authenticated>
         </>
     );
 }
