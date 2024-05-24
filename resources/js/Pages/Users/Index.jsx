@@ -1,14 +1,10 @@
-import { useState } from "react"
+import { useState } from "react";
 import Edit from "./Edit";
 import Authenticated from "@/Layouts/AuthedLayout";
-import { Link } from "@inertiajs/react";
 
-export default function Index({users}){
-    const [selectedUser, setSelectedUser] = useState(null);    
-    console.log(users);
+export default function Index({ users }) {
+    const [selectedUser, setSelectedUser] = useState(null);
 
-
-    
     const handleUserClick = (user) => {
         setSelectedUser(user);
         // <Link href={`/users/${user}`} />
@@ -18,142 +14,130 @@ export default function Index({users}){
         setSelectedUser(null);
     };
 
-
-
-
     const formatDate = (isoString) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const options = { year: "numeric", month: "long", day: "numeric" };
         return new Date(isoString).toLocaleDateString(undefined, options);
     };
 
-
     return (
         <Authenticated>
-            <div className="bg-white p-8 rounded-md w-full">
+            <div className="w-full p-8 bg-white rounded-md">
                 <div className="flex items-center justify-between pb-6">
                     <div>
-                        <h2 className="text-gray-600 font-semibold">Products Order</h2>
+                        <h2 className="font-semibold text-gray-600">
+                            Products Order
+                        </h2>
                         <span className="text-xs">All products item</span>
                     </div>
                     <div className="flex items-center justify-between">
-                        <div className="flex bg-gray-50 items-center p-2 rounded-md">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5 text-gray-400"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
+                        <div className="flex items-center p-2 rounded-md bg-gray-50">
                             <input
-                                className="bg-gray-50 outline-none ml-1 block"
+                                className="w-[400px] border border-black rounded-full p-2 px-4 bg-gray-50"
                                 type="text"
                                 placeholder="search..."
                             />
                         </div>
-                        <div className="lg:ml-40 ml-10 space-x-8">
-                            <button className="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">
-                                New Report
-                            </button>
-                            <button className="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">
-                                Create
-                            </button>
-                        </div>
                     </div>
                 </div>
-                <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                    <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
+                    <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
                         <table className="min-w-full leading-normal">
                             <thead>
                                 <tr>
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                         Name
                                     </th>
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                         Role
                                     </th>
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                         Created at
                                     </th>
-                                    {/* <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        QRT
-                                    </th> */}
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                         Status
-                                    </th>
-                                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Options
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {users.map((user, index) => (
                                     <tr key={index}>
-                                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <div className="flex items-center">
-                                                <div className="flex-shrink-0 w-10 h-10">
-                                                    <img
-                                                        className="w-full h-full rounded-full"
-                                                        src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"
-                                                        alt=""
-                                                    />
+                                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                            <a href={`/users/${user.id}`}>
+                                                <div className="flex items-center">
+                                                    <div className="flex-shrink-0 w-10 h-10">
+                                                        {user.image ? (
+                                                            <img
+                                                                className="w-10 h-10 rounded-full"
+                                                                src={user.image}
+                                                                alt=""
+                                                            />
+                                                        ) : (
+                                                            <img
+                                                                className="w-10 h-10 rounded-full"
+                                                                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                                                alt=""
+                                                            />
+                                                        )}
+                                                    </div>
+                                                    <div className="ml-3">
+                                                        <p className="text-gray-900 whitespace-no-wrap">
+                                                            {user.name}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                <div className="ml-3">
-                                                    <p className="text-gray-900 whitespace-no-wrap">
-                                                        {user.name}
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            </a>
                                         </td>
-                                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                             <p className="text-gray-900 whitespace-no-wrap">
                                                 {user.role}
                                             </p>
                                         </td>
-                                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                             <p className="text-gray-900 whitespace-no-wrap">
-                                            {formatDate(user.created_at)}
+                                                {formatDate(user.created_at)}
                                             </p>
                                         </td>
-                                        {/* <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p className="text-gray-900 whitespace-no-wrap">
-                                                {user.qrt}
-                                            </p>
-                                        </td> */}
-                                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <span className={`relative inline-block px-3 py-1 font-semibold leading-tight ${user.status === 'Active' ? 'text-green-900' : user.status === 'Suspended' ? 'text-orange-900' : 'text-red-900'}`}>
-                                                <span aria-hidden className={`absolute inset-0 ${user.status === 'Active' ? 'bg-green-200' : user.status === 'Suspended' ? 'bg-orange-200' : 'bg-red-200'} opacity-50 rounded-full`}></span>
-                                                <span className="relative">{user.status}</span>
-                                            </span>
-                                        </td>
-                                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <span>
-                                                <button 
-                                                    className=" bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
-                                                    onClick={() => handleUserClick(user)}
-                                                >
-                                                    edit user
-                                                </button>
+                                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                            <span
+                                                className={`relative inline-block px-3 py-1 font-semibold leading-tight ${
+                                                    user.status === "Active"
+                                                        ? "text-green-900"
+                                                        : user.status ===
+                                                          "Suspended"
+                                                        ? "text-orange-900"
+                                                        : "text-red-900"
+                                                }`}
+                                            >
+                                                <span
+                                                    aria-hidden
+                                                    className={`absolute inset-0 ${
+                                                        user.status === "Active"
+                                                            ? "bg-green-200"
+                                                            : user.status ===
+                                                              "Suspended"
+                                                            ? "bg-orange-200"
+                                                            : "bg-red-200"
+                                                    } opacity-50 rounded-full`}
+                                                ></span>
+                                                <span className="relative">
+                                                    {user.status}
+                                                </span>
                                             </span>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                        <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
-                            <span className="text-xs xs:text-sm text-gray-900">
+                        <div className="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
+                            <span className="text-xs text-gray-900 xs:text-sm">
                                 Showing 1 to 4 of 50 Entries
                             </span>
                             <div className="inline-flex mt-2 xs:mt-0">
-                                <button className="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l">
+                                <button className="px-4 py-2 text-sm font-semibold transition duration-150 bg-indigo-600 rounded-l text-indigo-50 hover:bg-indigo-500">
                                     Prev
                                 </button>
                                 &nbsp; &nbsp;
-                                <button className="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r">
+                                <button className="px-4 py-2 text-sm font-semibold transition duration-150 bg-indigo-600 rounded-r text-indigo-50 hover:bg-indigo-500">
                                     Next
                                 </button>
                             </div>
@@ -161,9 +145,6 @@ export default function Index({users}){
                     </div>
                 </div>
             </div>
-            {selectedUser && <Edit user={selectedUser} onClose={handleCloseModal} />}
         </Authenticated>
-
-    )
-
+    );
 }

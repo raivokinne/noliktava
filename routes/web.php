@@ -13,11 +13,11 @@ Route::get(
     function () {
         return Inertia::render('Dashboard/Index');
     }
-)->name('dashboard')->middleware(IsAdmin::class);
+)->name('dashboard')->middleware('auth');
 
 Route::get('/', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
-Route::delete('/logout', [AuthController::class, 'destroy'])->name('logout');
+Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 Route::middleware(IsAdmin::class)->group(function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
