@@ -55,7 +55,8 @@ class AuthController extends Controller
 
     public function registerStore(Request $request)
     {
-        $request->validate(
+
+        $formData = $request->validate(
             [
                 'name' => 'required|min:3|max:255',
                 'email' => 'required|email|min:3|max:255|unique:users,email',
@@ -64,11 +65,11 @@ class AuthController extends Controller
             ]
         );
 
-        $credentials = $request->only('name', 'email', 'password');
+        
 
-        $credentials['password'] = bcrypt($credentials['password']);
+        $formData['password'] = bcrypt($formData['password']);
 
-        $user = User::create($credentials);
+        $user = User::create($formData);
 
         auth()->login($user);
 
