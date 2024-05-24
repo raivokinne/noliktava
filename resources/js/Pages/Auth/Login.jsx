@@ -85,12 +85,6 @@ export default function Login() {
                                 >
                                     Login
                                 </button>
-                                <Link
-                                    href="/register"
-                                    className="w-full text-center underline text-sky-500"
-                                >
-                                    make an account
-                                </Link>
                             </div>
                         </form>
                     </div>
