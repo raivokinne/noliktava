@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Edit from "./Profile/Show";
 import Authenticated from "@/Layouts/AuthedLayout";
 
 export default function Index({ users }) {
     const [selectedUser, setSelectedUser] = useState(null);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const handleUserClick = (user) => {
         setSelectedUser(user);
@@ -19,6 +19,10 @@ export default function Index({ users }) {
         return new Date(isoString).toLocaleDateString(undefined, options);
     };
 
+    const filteredUsers = users.filter(user => 
+        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <Authenticated>
             <div className="w-full p-8 bg-white rounded-md">
@@ -31,11 +35,18 @@ export default function Index({ users }) {
                     </div>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center p-2 rounded-md bg-gray-50">
-                            <input
-                                className="w-[400px] border border-black rounded-full p-2 px-4 bg-gray-50"
-                                type="text"
-                                placeholder="search..."
-                            />
+                            <div className='flex items-center justify-center'>
+                                <div className="flex rounded-full border border-gray-300 w-full max-w-[600px] shadow-md">
+                                    <input
+                                        type="text"
+                                        className="w-full bg-white flex bg-transparent pl-2 rounded-full text-black outline-0"
+                                        placeholder="Search"
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                    />
+                                 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,7 +70,7 @@ export default function Index({ users }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.map((user, index) => (
+                                {filteredUsers.map((user, index) => (
                                     <tr key={index}>
                                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                             <a href={`/users/${user.id}`  }>
@@ -130,7 +141,7 @@ export default function Index({ users }) {
                         </table>
                         <div className="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
                             <span className="text-xs text-gray-900 xs:text-sm">
-                                Showing 1 to 4 of 50 Entries
+                                Showing {filteredUsers.length} of {users.length} Entries
                             </span>
                             <div className="inline-flex mt-2 xs:mt-0">
                                 <button className="px-4 py-2 text-sm font-semibold transition duration-150 bg-indigo-600 rounded-l text-indigo-50 hover:bg-indigo-500">
