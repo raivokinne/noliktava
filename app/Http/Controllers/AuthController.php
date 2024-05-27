@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -26,6 +27,7 @@ class AuthController extends Controller
 
         if (auth()->attempt($credentials)) {
             $request->session()->regenerate();
+            $request->session()->regenerateToken();
 
             return redirect()->route('dashboard');
         }
@@ -55,7 +57,6 @@ class AuthController extends Controller
 
     public function registerStore(Request $request)
     {
-
         $formData = $request->validate(
             [
                 'name' => 'required|min:3|max:255',
@@ -65,11 +66,11 @@ class AuthController extends Controller
             ]
         );
 
-
-
         $formData['password'] = bcrypt($formData['password']);
 
         $user = User::create($formData);
+
+        event(new Registered($user));
 
         auth()->login($user);
 

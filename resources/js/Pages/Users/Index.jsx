@@ -103,9 +103,9 @@ export default function Index({ users }) {
                                                     user.status === "Active"
                                                         ? "text-green-900"
                                                         : user.status ===
-                                                          "Suspended"
-                                                        ? "text-orange-900"
-                                                        : "text-red-900"
+                                                            "Suspended"
+                                                          ? "text-orange-900"
+                                                          : "text-red-900"
                                                 }`}
                                             >
                                                 <span
@@ -114,9 +114,9 @@ export default function Index({ users }) {
                                                         user.status === "Active"
                                                             ? "bg-green-200"
                                                             : user.status ===
-                                                              "Suspended"
-                                                            ? "bg-orange-200"
-                                                            : "bg-red-200"
+                                                                "Suspended"
+                                                              ? "bg-orange-200"
+                                                              : "bg-red-200"
                                                     } opacity-50 rounded-full`}
                                                 ></span>
                                                 <span className="relative">
