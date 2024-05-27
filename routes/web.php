@@ -38,10 +38,10 @@ Route::middleware(IsAdmin::class)->group(function () {
     Route::get('/shelfs/create', [ShelfController::class, 'create'])->name('shelf.create');
 
     Route::get('/reports', [ReportsController::class, 'index'])->name('report.index');
-    Route::get('/reports/{report}', [ReportsController::class, 'show'])->name('report.show');
+    Route::get('/reports/{report}/show', [ReportsController::class, 'show'])->name('report.show');
     Route::get('/reports/{report}/edit', [ReportsController::class, 'edit'])->name('report.edit');
     Route::put('/reports/{report}/update', [ReportsController::class, 'update'])->name('report.update');
     Route::post('/reports', [ReportsController::class, 'store'])->name('report.store');
     Route::get('/reports/create', [ReportsController::class, 'create'])->name('report.create');
-    Route::delete('/reports/{report}', [ReportsController::class, 'destroy'])->name('report.destroy');
+    Route::delete('/reports/{report}/destroy', [ReportsController::class, 'destroy'])->name('report.destroy');
 });
