@@ -25,5 +25,23 @@ class DatabaseSeeder extends Seeder
                 'status' => 'active',
             ]
         );
+        User::factory()->create(
+            [
+                'name' => 'worker',
+                'email' => 'worker@gmail.com',
+                'password' => bcrypt('test1234'),
+                'role' => 'worker',
+                'status' => 'active',
+            ]
+        );
+        User::factory()->create(
+            [
+                'name' => 'sorter',
+                'email' => 'sorter@gmail.com',
+                'password' => bcrypt('test1234'),
+                'role' => 'sorter',
+                'status' => 'active',
+            ]
+        );
     }
 }
