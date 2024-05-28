@@ -11,7 +11,8 @@ class ShelfController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Shelf/Index');
+        $shelves = Shelf::all();
+        return Inertia::render('Shelf/Index', compact('shelves'));
     }
 
     public function edit($id)

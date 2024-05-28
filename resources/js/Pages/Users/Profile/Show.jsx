@@ -4,7 +4,7 @@ import ShowUserInfo from "./Partials/ShowUserInfo";
 
 export default function Edit({ user }) {
     // Initialize isOpen state
-    
+
     console.log(user);
     
 
