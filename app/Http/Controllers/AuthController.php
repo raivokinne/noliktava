@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reports;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -29,7 +30,24 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $request->session()->regenerateToken();
 
+            Reports::create(
+                [
+                    'user_id' => auth()->user()->id,
+                    'description' => auth()->user()->name . ' logged in',
+                    'date' => now(),
+                    'name' => 'Login',
+                ]
+            );
+
             return redirect()->route('dashboard');
+        }
+
+        if (!auth()->attempt($credentials)) {
+            return back()->withErrors(
+                [
+                    'email' => 'The provided credentials do not match our records.',
+                ]
+            );
         }
 
         return back()->withErrors(
@@ -46,6 +64,21 @@ class AuthController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+
+        Reports::create(
+            [
+                'user_id' => auth()->user()->id,
+                'description' => auth()->user()->name . ' logged out',
+                'date' => now(),
+                'name' => 'Logout',
+            ]
+        );
+
+        User::where('id', auth()->user()->id)->update(
+            [
+                'status' => 'inactive',
+            ]
+        );
 
         return redirect()->route('login');
     }
@@ -73,6 +106,15 @@ class AuthController extends Controller
         event(new Registered($user));
 
         auth()->login($user);
+
+        Reports::create(
+            [
+                'user_id' => auth()->user()->id,
+                'description' => auth()->user()->name . ' registered',
+                'date' => now(),
+                'name' => 'Register',
+            ]
+        );
 
         return redirect()->route('dashboard');
     }
