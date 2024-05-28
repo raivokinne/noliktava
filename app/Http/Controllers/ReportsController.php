@@ -10,7 +10,11 @@ class ReportsController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Reports/Index');
+        return Inertia::render(
+            'Reports/Index', [
+                'reports' => Reports::all(),
+            ]
+        );
     }
 
     public function create()
@@ -36,6 +40,7 @@ class ReportsController extends Controller
             [
                 'name' => 'required|min:3|max:255',
                 'description' => 'required|min:3|max:255',
+                'date' => 'required|date',
             ]
         );
 
@@ -59,13 +64,23 @@ class ReportsController extends Controller
             [
                 'name' => 'required|min:3|max:255',
                 'description' => 'required|min:3|max:255',
+                'date' => 'required|date',
             ]
         );
         $report = Reports::find($id);
         $report->name = $request->name;
         $report->description = $request->description;
+        $report->date = $request->date;
         $report->user_id = auth()->user()->id;
         $report->save();
+        Reports::create(
+            [
+                'user_id' => auth()->user()->id,
+                'description' => $report->name . ' was updated by ' . auth()->user()->name,
+                'date' => now(),
+                'name' => 'Report Update',
+            ]
+        );
         return redirect()->route('report.index');
     }
 }
