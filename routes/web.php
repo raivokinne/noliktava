@@ -9,6 +9,7 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsSorter;
 use App\Http\Middleware\IsWorker;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 Route::middleware('guest')->group(
@@ -64,6 +65,10 @@ Route::middleware([IsAdmin::class, IsSorter::class])->group(
         Route::get('/shelves/create', [ShelfController::class, 'create'])->name('shelf.create');
     }
 );
+
+Route::get('/api/user', function () {
+    return Auth::user();
+});
 
 Route::middleware(IsAdmin::class)->group(
     function () {
