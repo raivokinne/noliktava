@@ -6,6 +6,7 @@ use App\Http\Controllers\ShelfController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 Route::get(
@@ -18,6 +19,10 @@ Route::get(
 Route::get('/', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::delete('/logout', [AuthController::class, 'destroy'])->name('logout');
+
+Route::get('/api/user', function () {
+    return Auth::user();
+});
 
 Route::middleware(IsAdmin::class)->group(
     function () {
