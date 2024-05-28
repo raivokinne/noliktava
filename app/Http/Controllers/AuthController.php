@@ -59,12 +59,6 @@ class AuthController extends Controller
 
     public function destroy(Request $request)
     {
-        auth()->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
         Reports::create(
             [
                 'user_id' => auth()->user()->id,
@@ -79,6 +73,12 @@ class AuthController extends Controller
                 'status' => 'inactive',
             ]
         );
+        auth()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
 
         return redirect()->route('login');
     }
