@@ -1,31 +1,6 @@
-import React, { useEffect, useState } from 'react';
 
-function Navbar() {
-  return (
-    <nav className="fixed top-0 left-0 w-full h-16 bg-gradient-to-r from-red-800 to-blue text-white flex items-center justify-between px-6 shadow-lg z-50">
-      <div className="flex items-center">
-        <span className="text-2xl font-bold tracking-tight">Nosaukums</span>
-      </div>
-      <ul className="flex items-center">
-        <li className="mr-6">
-          <a href="/reports" className="hover:text-gray-400 transition duration-300">
-            Reports
-          </a>
-        </li>
-        <li className="mr-6">
-          <a href="/users" className="hover:text-gray-400 transition duration-300">
-            Users
-          </a>
-        </li>
-        <li className="mr-6">
-          <a href="#" className="hover:text-gray-400 transition duration-300">
-            Contact
-          </a>
-        </li>
-      </ul>
-    </nav>
-  );
-}
+import React, { useEffect, useState } from 'react';
+import Navbar from "@/Components/Navbar.jsx";
 
 function Home() {
   const [user, setUser] = useState(null); // Initial state is null

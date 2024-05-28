@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,7 +18,6 @@ return new class extends Migration
                 $table->string('description');
                 $table->float('price');
                 $table->string('image');
-                $table->foreignId('supplier_id')->constrained('suppliers');
                 $table->integer('stock');
                 $table->boolean('active')->default(true);
                 $table->enum('condition', ['new', ' barley used ', 'used'])->default('new');
