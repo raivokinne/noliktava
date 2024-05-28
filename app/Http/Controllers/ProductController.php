@@ -62,7 +62,7 @@ class ProductController extends Controller
                 'name' => 'Product Create',
             ]
         );
-        return redirect()->route('Product.index');
+        return redirect()->route('product.index');
     }
 
     public function destroy($id)
