@@ -1,10 +1,12 @@
-
 import React, { useEffect, useState } from 'react';
-import Navbar from "@/Components/Navbar.jsx";
+import Navbar from '@/Components/Navbar';
+import Authenticated from '@/Layouts/AuthedLayout';
+
+
 
 function Home() {
-  const [user, setUser] = useState(null); // Initial state is null
-  const [loading, setLoading] = useState(true); // Loading state
+  const [user, setUser] = useState(null); 
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -18,19 +20,21 @@ function Home() {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center relative bg-gray-900 text-white">
-      <Navbar />
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-75" />
-      <div className="relative z-10 flex flex-col items-center">
-        {!loading && user ? (
-          <h1 className="text-6xl font-extrabold mb-4">
-            Welcome <a href="/users" className="text-4xl underline hover:text-blue-300 transition duration-300">{user.name}!</a>
-          </h1>
-        ) : (
-          <div className="text-lg text-gray-300 mb-8">Loading...</div>
-        )}
-      </div>
+    <Authenticated>
+    <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+      {loading ? (
+        <p className="text-lg">Loading...</p>
+      ) : user ? (
+        <div className="px-8 pt-6 pb-8 mb-4 w-full max-w-md text-center">
+          <div className="mb-4">
+          <p className="text-3xl font-bold text-white mb-2">Welcome, {user.name}!</p>
+          </div>
+        </div>
+      ) : (
+        <p className="text-red-500">Error fetching user data</p>
+      )}
     </div>
+  </Authenticated>
   );
 }
 
