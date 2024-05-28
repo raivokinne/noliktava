@@ -9,12 +9,12 @@
         };
         return (
             <>
-                <nav className="bg-white border-gray-200 px-2 sm:px-4 py-4 dark:text-white dark:bg-gray-900">
-                    <div className="container flex flex-wrap items-center justify-between mx-auto">
+                <nav className="bg-white h-[80px] flex items-center justify-center w-full dark:text-white dark:bg-gray-900 fixed top-0">
+                    <div className="container flex items-center justify-between w-full mx-[150px]">
                         <div className="flex items-center">
-                            <a className="text-2xl font-semibold" href="/">
-                                <img className="w-[80px] h-[80px] rounded-full" src="/assets/logo.jpg" alt="logo" />
-                            </a>
+                            <a href="/">
+                                <img className="w-[60px] h-[60px] rounded-full" src="/assets/logo.jpg" alt="logo" />
+                            </a> 
                         </div>
 
                         <ul className="flex items-center">
@@ -38,7 +38,10 @@
                                 <a href="/products">Products</a>
                             </li>
 
-                            <li className="mr-6">
+                           
+                        </ul>
+                        <ul className="flex items-center" >
+                        <li className="mr-6">
                                 <form onSubmit={submit}>
                                     <button
                                         type="submit"
