@@ -1,6 +1,13 @@
 import { Link } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 
 export default function Show({ report }) {
+    const { data, setData, delete: destroy, errors } = useForm({});
+
+    const submit = (e) => {
+        e.preventDefault();
+        destroy(route("report.destroy", report.id));
+    };
     return (
         <>
             <section className="flex items-center justify-center w-screen h-screen">
@@ -15,11 +22,10 @@ export default function Show({ report }) {
                         >
                             Edit
                         </Link>
-                        <form onSubmit={(e) => e.preventDefault()}>
+                        <form onSubmit={submit}>
                             <button
                                 className="bg-black text-white w-full p-2 rounded-md px-4"
                                 type="submit"
-                                onClick={() => confirm("Are you sure?")}
                             >
                                 Delete
                             </button>

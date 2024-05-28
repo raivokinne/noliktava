@@ -1,9 +1,9 @@
-
+import Authenticated from "@/Layouts/AuthedLayout";
 
 export default function Index() {
     return (
-        <div>
-            <h1>asdasd</h1>
-        </div>
-    )
+        <Authenticated>
+            <h1>Dashboard</h1>
+        </Authenticated>
+    );
 }
