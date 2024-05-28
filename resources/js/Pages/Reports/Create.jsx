@@ -10,7 +10,7 @@ export default function Create() {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("reports.store"));
+        post(route("report.store"));
     };
     return (
         <>
@@ -36,7 +36,6 @@ export default function Create() {
                                 onChange={(e) =>
                                     setData("name", e.target.value)
                                 }
-                                value={data.name}
                             />
                             {errors.name && (
                                 <p className="text-red-500">{errors.name}</p>
@@ -53,9 +52,7 @@ export default function Create() {
                                 onChange={(e) =>
                                     setData("description", e.target.value)
                                 }
-                            >
-                                {data.description}
-                            </textarea>
+                            ></textarea>
                             {errors.description && (
                                 <p className="text-red-500">
                                     {errors.description}
@@ -72,7 +69,6 @@ export default function Create() {
                                 onChange={(e) =>
                                     setData("date", e.target.value)
                                 }
-                                value={data.date}
                             />
                             {errors.date && (
                                 <p className="text-red-500">{errors.date}</p>

@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Reports;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\Product;
 
 class ProductController extends Controller
 {
-    //nevaig create , store
+    // nevaig create , store
     public function index()
     {
         return Inertia::render('Product/Index');
     }
+
     public function edit($id)
     {
         $product = Product::find($id);
@@ -29,6 +31,14 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
+        Reports::create(
+            [
+                'user_id' => auth()->user()->id,
+                'description' => $product->name . ' was deleted by ' . auth()->user()->name,
+                'date' => now(),
+                'name' => 'Product Delete',
+            ]
+        );
         return redirect()->route('Product.index');
     }
 
@@ -40,9 +50,8 @@ class ProductController extends Controller
                 'description' => 'required|min:3|max:255',
                 'price' => 'required|decimal',
                 'image' => 'required|string',
-                'stock' =>'required',
+                'stock' => 'required',
                 'active' => 'required'
-
             ]
         );
         $product = Product::find($id);
@@ -55,7 +64,15 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->active = $request->active;
         $product->save();
+
+        Reports::create(
+            [
+                'user_id' => auth()->user()->id,
+                'description' => $product->name . ' was edited by ' . auth()->user()->name,
+                'date' => now(),
+                'name' => 'Product Edit',
+            ]
+        );
         return redirect()->route('Product.index');
     }
-
 }

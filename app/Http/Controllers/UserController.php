@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reports;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,9 +20,8 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        //dd($user);
         return Inertia::render(
-            'Users/Profile/Show', [ 
+            'Users/Profile/Show', [
                 'user' => $user,
             ]
         );
@@ -59,12 +59,29 @@ class UserController extends Controller
 
         $user->save();
 
+        Reports::create(
+            [
+                'user_id' => auth()->user()->id,
+                'description' => $user->name . ' was updated by ' . auth()->user()->name,
+                'date' => now(),
+                'name' => 'User Update',
+            ]
+        );
+
         return redirect()->route('users.show', $user);
     }
 
     public function destroy(User $user)
     {
         $user->delete();
+        Reports::create(
+            [
+                'user_id' => auth()->user()->id,
+                'description' => $user->name . ' was deleted by ' . auth()->user()->name,
+                'date' => now(),
+                'name' => 'User Delete',
+            ]
+        );
         return redirect()->route('users.index');
     }
 }
