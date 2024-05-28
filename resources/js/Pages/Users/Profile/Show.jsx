@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
+import ShowUserInfo from "./Partials/ShowUserInfo";
 
-export default function Edit({ user, onClose }) {
+export default function Edit({ user }) {
     // Initialize isOpen state
-    
+
     console.log(user);
+    
 
     // Return JSX for the dialog
     return (
-        <>
-            <h1>asdkjasdkjadskjasdhkjasdkh</h1>
-        </>
+        <div className="p-4">
+            <div>
+                <ShowUserInfo user={user} />
+            </div>
+            
+        </div>
     );
 }

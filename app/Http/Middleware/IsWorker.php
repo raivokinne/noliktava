@@ -2,21 +2,21 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Closure;
 
 class IsWorker
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->user()->role === 'worker') {
-            abort(403);
+        if (!auth()->user() || !auth()->user()->role === 'worker') {
+            return abort(403);
         }
         return $next($request);
     }

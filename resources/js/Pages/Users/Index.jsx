@@ -132,10 +132,10 @@ export default function Index({ users }) {
                                                     <span
                                                         className={`relative inline-block px-3 py-1 font-semibold leading-tight ${
                                                             user.status ===
-                                                            "Active"
+                                                            "active"
                                                                 ? "text-green-900"
                                                                 : user.status ===
-                                                                    "Suspended"
+                                                                    "inactive"
                                                                   ? "text-orange-900"
                                                                   : "text-red-900"
                                                         }`}
@@ -144,10 +144,10 @@ export default function Index({ users }) {
                                                             aria-hidden
                                                             className={`absolute inset-0 ${
                                                                 user.status ===
-                                                                "Active"
+                                                                "active"
                                                                     ? "bg-green-200"
                                                                     : user.status ===
-                                                                        "Suspended"
+                                                                        "inactive"
                                                                       ? "bg-orange-200"
                                                                       : "bg-red-200"
                                                             } opacity-50 rounded-full`}
