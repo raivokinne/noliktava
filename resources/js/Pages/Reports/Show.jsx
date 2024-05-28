@@ -1,22 +1,32 @@
-import React from 'react';
+import { Link } from "@inertiajs/react";
 
-
-export default function Show({report}) {
-   
-
+export default function Show({ report }) {
     return (
-        <div>
-            <h1>Product Details</h1>
-            <div>
-                <strong>Name:</strong> {report.name}
-            </div>
-            <div>
-                <strong>Description:</strong> {report.description}
-            </div>
-           
-            <div>
-                <InertiaLink href="/reports">Back to reports</InertiaLink>
-            </div>
-        </div>
+        <>
+            <section className="flex items-center justify-center w-screen h-screen">
+                <article className="w-[400px] p-8 place-items-center grid gap-4 border border-black">
+                    <h1 className="text-2xl font-bold">{report.name}</h1>
+                    <p className="text-lg">{report.description}</p>
+                    <p className="text-lg">{report.date}</p>
+                    <div className="flex gap-4 items-center">
+                        <Link
+                            className="bg-black text-white w-full p-2 rounded-md px-4"
+                            href={`/reports/${report.id}/edit`}
+                        >
+                            Edit
+                        </Link>
+                        <form onSubmit={(e) => e.preventDefault()}>
+                            <button
+                                className="bg-black text-white w-full p-2 rounded-md px-4"
+                                type="submit"
+                                onClick={() => confirm("Are you sure?")}
+                            >
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </article>
+            </section>
+        </>
     );
 }
