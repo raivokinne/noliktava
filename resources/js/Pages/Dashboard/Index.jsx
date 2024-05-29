@@ -1,18 +1,16 @@
-
 import React, { useEffect, useState } from 'react';
 import Navbar from "@/Components/Navbar.jsx";
-import { Link } from '@inertiajs/react';
 
 function Home() {
-  const [user, setUser] = useState(null); // Initial state is null
-  const [loading, setLoading] = useState(true); // Loading state
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserData = async () => {
       const response = await fetch('/api/user');
       const data = await response.json();
       setUser(data);
-      setLoading(false); 
+      setLoading(false);
     };
 
     fetchUserData();
@@ -25,7 +23,7 @@ function Home() {
       <div className="relative z-10 flex flex-col items-center">
         {!loading && user ? (
           <h1 className="text-6xl font-extrabold mb-4">
-            Welcome <Link href="/users" className="text-4xl underline hover:text-blue-300 transition duration-300">{user.name}!</Link>
+            Welcome <a href="/users" className="text-4xl underline hover:text-blue-300 transition duration-300">{user.name}!</a>
           </h1>
         ) : (
           <div className="text-lg text-gray-300 mb-8">Loading...</div>
