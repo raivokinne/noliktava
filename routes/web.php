@@ -45,7 +45,7 @@ Route::middleware('auth')->group(
 
 Route::middleware([IsAdmin::class, IsWorker::class])->group(
     function () {
-        Route::get('/products', [ProductController::class, 'create'])->name('products.index');
+        Route::get('/products', [ProductController::class, 'index'])->name('products.index');
         Route::get('/products/{product}/show', [ProductController::class, 'show'])->name('products.show');
         Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
         Route::delete('/products/{product}/destroy', [ProductController::class, 'destroy'])->name('products.destroy');
