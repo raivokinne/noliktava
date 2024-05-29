@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Navbar from "@/Components/Navbar.jsx";
+import { Link } from '@inertiajs/react';
 
 function Home() {
   const [user, setUser] = useState(null); // Initial state is null
@@ -24,7 +25,7 @@ function Home() {
       <div className="relative z-10 flex flex-col items-center">
         {!loading && user ? (
           <h1 className="text-6xl font-extrabold mb-4">
-            Welcome <a href="/users" className="text-4xl underline hover:text-blue-300 transition duration-300">{user.name}!</a>
+            Welcome <Link href="/users" className="text-4xl underline hover:text-blue-300 transition duration-300">{user.name}!</Link>
           </h1>
         ) : (
           <div className="text-lg text-gray-300 mb-8">Loading...</div>

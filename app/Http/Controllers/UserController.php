@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\Reports;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,18 +13,23 @@ class UserController extends Controller
 {
     public function index()
     {
+        // $users = User::paginate(10);
         return Inertia::render(
             'Users/Index', [
-                'users' => User::all(),
+                'users' => UserResource::collection(
+                    User::latest()->paginate(10)
+                ),
             ]
         );
     }
 
     public function show(User $user)
     {
+        //dd(auth()->user());
         return Inertia::render(
             'Users/Profile/Show', [
                 'user' => $user,
+                // 'auth' => 
             ]
         );
     }
