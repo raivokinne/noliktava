@@ -63,7 +63,7 @@ class ShelfController extends Controller
                 'description' => $shelf->name . ' was updated by ' . auth()->user()->name,
                 'date' => now(),
                 'name' => 'Shelf Update',
-            ]
+            ]   
         );
 
         return redirect()->route('shelf.index');
