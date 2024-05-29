@@ -34,26 +34,30 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request);
         $request->validate(
             [
                 'name' => 'required|min:3|max:255',
                 'description' => 'required|min:3|max:255',
-                'price' => 'required|decimal',
-                'image' => 'required|string',
-                'stock' => 'required',
-                'active' => 'required',
-                'condition' => 'required',
+                'price' => 'required|numeric',
+                'image' => 'required|image',
+                'stock' => 'required|integer',
+                'active' => 'required|boolean',
+                'condition' => 'required|string'
             ]
         );
+        $imagePath = $request->file('image')->store('products', 'public');
+
         $product = new Product();
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
-        $product->image = $request->image;
+        $product->image = $imagePath;
         $product->stock = $request->stock;
         $product->active = $request->active;
         $product->condition = $request->condition;
         $product->save();
+
         Reports::create(
             [
                 'user_id' => auth()->user()->id,
@@ -62,7 +66,7 @@ class ProductController extends Controller
                 'name' => 'Product Create',
             ]
         );
-        return redirect()->route('product.index');
+        return redirect()->route('products.index');
     }
 
     public function destroy($id)
@@ -77,20 +81,24 @@ class ProductController extends Controller
                 'name' => 'Product Delete',
             ]
         );
-        return redirect()->route('Product.index');
+        return redirect()->route('product.index');
     }
 
     public function update(Request $request, $id)
     {
+        $imagePath = $request->file('image')->store('products', 'public');
+
         $request->validate(
             [
                 'name' => 'required|min:3|max:255',
                 'description' => 'required|min:3|max:255',
-                'price' => 'required|decimal',
-                'image' => 'required|string',
-                'stock' => 'required',
-                'active' => 'required'
-            ]
+                'price' => 'required|numeric',
+                'image' => 'required|image',
+                'stock' => 'required|integer',
+                'active' => 'require|boolean',
+                'condition' => 'required|string'
+            ]           
+            
         );
         $product = Product::find($id);
         $product->name = $request->name;
@@ -98,9 +106,10 @@ class ProductController extends Controller
         $product->user_id = auth()->user()->id;
         $product->description = $request->description;
         $product->price = $request->price;
-        $product->image = $request->image;
+        $product->image = $imagePath;
         $product->stock = $request->stock;
         $product->active = $request->active;
+        $product->condition = $request->condition;
         $product->save();
 
         Reports::create(
@@ -111,6 +120,6 @@ class ProductController extends Controller
                 'name' => 'Product Edit',
             ]
         );
-        return redirect()->route('Product.index');
+        return redirect()->route('product.index');
     }
 }

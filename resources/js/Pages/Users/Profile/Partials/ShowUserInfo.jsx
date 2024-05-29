@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
-export default function ShowUserInfo({ user }) {
+export default function ShowUserInfo({ user, logedUser }) {
   const [isHovered, setIsHovered] = useState(false);
 
+  console.log(logedUser);
   return (
     <div className="h-full">
       <div className="border-b-2 block md:flex">
@@ -35,54 +36,54 @@ export default function ShowUserInfo({ user }) {
             </div>
           </div>
         </div>
-
-        <div className="w-full md:w-3/5 p-8 bg-white lg:ml-4 shadow-md">
-          <div className="rounded shadow p-6">
-            <div className="pb-6">
-              <label htmlFor="name" className="font-semibold text-gray-700 block pb-1">Name</label>
-              <div className="flex">
+        <form className="w-full md:w-3/5 p-8 bg-white lg:ml-4 shadow-md" >
+            <div>
+            <div className="rounded shadow p-6">
+                <div className="pb-6">
+                <label htmlFor="name" className="font-semibold text-gray-700 block pb-1">Name</label>
+                <div className="flex">
+                    <input
+                    disabled
+                    id="username"
+                    className="border-1 rounded-r px-4 py-2 w-full"
+                    type="text"
+                    value={user.name}
+                    />
+                </div>
+                </div>
+                <div className="pb-6">
+                <label htmlFor="about" className="font-semibold text-gray-700 block pb-1">Email</label>
                 <input
-                  disabled
-                  id="username"
-                  className="border-1 rounded-r px-4 py-2 w-full"
-                  type="text"
-                  value={user.name}
+                    disabled
+                    id="email"
+                    className="border-1 rounded-r px-4 py-2 w-full"
+                    type="email"
+                    value={user.email}
                 />
-              </div>
-            </div>
-            <div className="pb-6">
-              <label htmlFor="about" className="font-semibold text-gray-700 block pb-1">Email</label>
-              <input
-                disabled
-                id="email"
-                className="border-1 rounded-r px-4 py-2 w-full"
-                type="email"
-                value={user.email}
-              />
-            </div>
-            <div className='flex flex-row gap-3 items-center' >
-                <h1 className='font-semibold text-gray-700 block '>Role</h1>
-                {
-                    // user.role === 'admin' ? (
-                    //     <div>
-                    //         <select></select>
-                    //     </div>
-                    // ) : (
-                    //     <div>
-                    //         <select disabled >
-                    //             <option value={user.role}>{user.role}</option>
-                    //         </select>
-                    //     </div>
-                    // )    
-                    <select value={user.role} disabled={() => user.role === 'admin'}>
+                </div>
+                <div className='flex flex-row gap-3 items-center'>
+                    <h1 className='font-semibold text-gray-700 block'>Role</h1>
+                    {user.role === 'admin' ? (
+                        <select value={user.role} onChange={(e) => setUserRole(e.target.value)}>
                         <option value="admin">Admin</option>
                         <option value="worker">Worker</option>
                         <option value="sorter">Sorter</option>
-                    </select>
-                }
+                        </select>
+                    ) : (
+                        <select className=' hover:border-red-600' value={user.role} disabled>
+                        <option value="admin">Admin</option>
+                        <option value="worker">Worker</option>
+                        <option value="sorter">Sorter</option>
+                        </select>
+                    )}
+                </div>
+                <button type='submit'
+                    className="px-4 py-2 text-sm font-semibold transition duration-150 bg-indigo-600 rounded text-indigo-50 hover:bg-indigo-500 mt-6"
+                >Save changes</button>
             </div>
-          </div>
-        </div>
+            </div>
+        </form>
+
       </div>
     </div>
   );
