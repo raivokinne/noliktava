@@ -45,7 +45,7 @@
                                 <form onSubmit={submit}>
                                     <button
                                         type="submit"
-                                        className="p-2 px-4 text-white bg-black rounded"
+                                        className="p-2 px-4 text-white bg-black rounded hover:bg-sky-700"
                                     >
                                         Logout
                                     </button>
