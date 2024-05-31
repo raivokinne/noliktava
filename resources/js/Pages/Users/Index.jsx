@@ -33,7 +33,7 @@ export default function Index({ users }) {
 
     return (
         <Authenticated>
-            <div className="w-full p-8 bg-white rounded-md">
+            <div className="w-full p-8 mt-12 bg-white rounded-md">
                 <div className="flex items-center justify-between pb-6">
                     <div>
                         <h2 className="font-semibold text-gray-600">Users</h2>
