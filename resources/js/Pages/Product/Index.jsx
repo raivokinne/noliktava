@@ -5,7 +5,7 @@ export default function Index({ products, auth }) {
     return (
         <>
             <Authenticated>
-                <section className="grid place-items-center mt-32">
+                <section className="grid mt-32 place-items-center">
                     <div className="grid grid-cols-4 place-items-center gap-10 w-[1400px]">
                         {products.length > 0 ? (
                             <>
@@ -20,14 +20,14 @@ export default function Index({ products, auth }) {
                                             <img
                                                 src={`/storage/products/${product.image}`}
                                                 alt={product.name}
-                                                className="w-full object-cover rounded-md"
+                                                className="object-cover w-full rounded-md"
                                             />
                                         </a>
-                                        <div className="border-t-2 border-black w-full">
-                                            <h1 className="text-xl font-semibold mt-4">
+                                        <div className="w-full border-t-2 border-black">
+                                            <h1 className="mt-4 text-xl font-semibold">
                                                 {product.name}
                                             </h1>
-                                            <p className="text-green-500 font-bold">
+                                            <p className="font-bold text-green-500">
                                                 ${product.price}
                                             </p>
                                         </div>
@@ -44,7 +44,7 @@ export default function Index({ products, auth }) {
                             (auth.user.role === "worker" && (
                                 <a
                                     href={`/products/create`}
-                                    className="p-2 px-4 text-2xl text-white bg-black rounded-full w-12 h-12"
+                                    className="w-12 h-12 p-2 px-4 text-2xl text-white bg-black rounded-full"
                                 >
                                     +
                                 </a>
