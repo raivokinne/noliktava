@@ -1,11 +1,16 @@
 import { useState } from "react";
 import Authenticated from "@/Layouts/AuthedLayout";
 import { useForm } from "@inertiajs/react";
+import { Link } from "@inertiajs/inertia-react";
+import Pagination from "@/Components/Pagination";
 
 export default function Index({ users }) {
     const { data, setData, delete: destroy, processing } = useForm({});
     const [selectedUser, setSelectedUser] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
+
+
+    console.log(users);
 
     const handleUserClick = (user) => {
         setSelectedUser(user);
@@ -28,7 +33,7 @@ export default function Index({ users }) {
 
     return (
         <Authenticated>
-            <div className="w-full p-8 bg-white rounded-md">
+            <div className="w-full p-8 mt-12 bg-white rounded-md">
                 <div className="flex items-center justify-between pb-6">
                     <div>
                         <h2 className="font-semibold text-gray-600">Users</h2>
@@ -82,9 +87,9 @@ export default function Index({ users }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.length > 0 ? (
+                                {users.data.length > 0 ? (
                                     <>
-                                        {users.map((user, index) => (
+                                        {users.data.map((user, index) => (
                                             <tr key={index}>
                                                 <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                                     <a
@@ -171,20 +176,7 @@ export default function Index({ users }) {
                                 )}
                             </tbody>
                         </table>
-                        <div className="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
-                            <span className="text-xs text-gray-900 xs:text-sm">
-                                Showing {users.length} of {users.length} Entries
-                            </span>
-                            <div className="inline-flex mt-2 xs:mt-0">
-                                <button className="px-4 py-2 text-sm font-semibold transition duration-150 bg-indigo-600 rounded-l text-indigo-50 hover:bg-indigo-500">
-                                    Prev
-                                </button>
-                                &nbsp; &nbsp;
-                                <button className="px-4 py-2 text-sm font-semibold transition duration-150 bg-indigo-600 rounded-r text-indigo-50 hover:bg-indigo-500">
-                                    Next
-                                </button>
-                            </div>
-                        </div>
+                        <Pagination currentPage={users.meta.current_page} lastPage={users.meta.last_page} />
                     </div>
                 </div>
             </div>

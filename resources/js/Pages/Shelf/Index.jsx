@@ -13,7 +13,7 @@ export default function Index({ shelves }) {
             <Authenticated>
                 <div className="px-4 py-4 -mx-4 grid place-items-center overflow-x-auto sm:-mx-8 sm:px-8">
                     <div className="inline-block w-[1400px] overflow-hidden rounded-lg shadow">
-                        <table className="min-w-full leading-normal">
+                        <table className="min-w-full mt-20 leading-normal">
                             <thead>
                                 <tr>
                                     <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
@@ -63,7 +63,9 @@ export default function Index({ shelves }) {
                                                                 onSubmit={
                                                                     submit
                                                                 }
+                                                                
                                                             >
+                                                                
                                                                 <button
                                                                     type="submit"
                                                                     className="p-2 px-4 ml-2 text-white bg-red-500 rounded-full"
