@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Reports;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -39,22 +40,20 @@ class ProductController extends Controller
             [
                 'name' => 'required|min:3|max:255',
                 'description' => 'required|min:3|max:255',
-                'price' => 'required|numeric',
-                'image' => 'required|image',
-                'stock' => 'required|integer',
-                'active' => 'required|boolean',
-                'condition' => 'required|string'
+                'price' => 'required|decimal',
+                'image' => 'required|string',
+                'stock' => 'required',
+                'active' => 'required',
+                'condition' => 'required',
             ]
         );
-        $imagePath = $request->file('image')->store('products', 'public');
-
         $product = new Product();
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
-        $product->image = $imagePath;
+        $product->image = $request->image;
         $product->stock = $request->stock;
-        $product->active = $request->active;
+        $product->active = $request->active == 'on' ? true : false;
         $product->condition = $request->condition;
         $product->save();
 
@@ -92,17 +91,14 @@ class ProductController extends Controller
             [
                 'name' => 'required|min:3|max:255',
                 'description' => 'required|min:3|max:255',
-                'price' => 'required|numeric',
-                'image' => 'required|image',
-                'stock' => 'required|integer',
-                'active' => 'require|boolean',
-                'condition' => 'required|string'
-            ]           
-            
+                'price' => 'required|decimal',
+                'image' => 'required|string',
+                'stock' => 'required',
+                'active' => 'required'
+            ]
         );
         $product = Product::find($id);
         $product->name = $request->name;
-        // $product->active = 1;
         $product->user_id = auth()->user()->id;
         $product->description = $request->description;
         $product->price = $request->price;
@@ -120,6 +116,6 @@ class ProductController extends Controller
                 'name' => 'Product Edit',
             ]
         );
-        return redirect()->route('product.index');
+        return redirect()->route('Product.index');
     }
 }
