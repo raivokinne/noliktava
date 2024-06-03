@@ -29,7 +29,7 @@ export default function Index({ users, filters }) {
 
     return (
         <Authenticated>
-            <div className="w-full p-8 mt-12 bg-white rounded-md">
+            <div className="w-full p-8 mt-20 bg-white rounded-md">
                 <div className="flex items-center justify-between pb-6">
                     <div>
                         <h2 className="font-semibold text-gray-600">Users</h2>
@@ -160,7 +160,20 @@ export default function Index({ users, filters }) {
                                 )}
                             </tbody>
                         </table>
-                        <Pagination currentPage={users.meta.current_page} lastPage={users.meta.last_page} />
+                        <div className="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
+                            <span className="text-xs text-gray-900 xs:text-sm">
+                                Showing {users.length} of {users.length} Entries
+                            </span>
+                            <div className="inline-flex mt-2 xs:mt-0">
+                                <button className="px-4 py-2 text-sm font-semibold transition duration-150 bg-indigo-600 rounded-l text-indigo-50 hover:bg-indigo-500">
+                                    Prev
+                                </button>
+                                &nbsp; &nbsp;
+                                <button className="px-4 py-2 text-sm font-semibold transition duration-150 bg-indigo-600 rounded-r text-indigo-50 hover:bg-indigo-500">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
