@@ -15,9 +15,9 @@ export default function Edit({ user, auth }) {
             <div>
                 <ShowUserInfo user={user} auth={auth} />
             </div>
-            {/* <div>
-                <DeleteUser />
-            </div> */}
+            <div>
+                <DeleteUser user={user} auth={auth} />
+            </div>
             
         </div>
     );
