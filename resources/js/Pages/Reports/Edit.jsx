@@ -10,7 +10,7 @@ export default function Edit({ report }) {
     const submit = (e) => {
         e.preventDefault();
 
-        put(route("report.update", report.id));
+        put(route("reports.update", report.id));
     };
 
     return (

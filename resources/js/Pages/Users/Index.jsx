@@ -46,11 +46,17 @@ export default function Index({ users, filters }) {
                                         className="w-[400px] p-2 px-4 border border-black rounded-full"
                                         placeholder="Search by name"
                                         value={data.search}
-                                        onChange={(e) => setData("search", e.target.value)}
+                                        onChange={(e) =>
+                                            setData("search", e.target.value)
+                                        }
                                     />
-                                    
                                 </div>
-                                <button className=" px-4 py-2 text-sm font-semibold transition duration-150 bg-indigo-600 rounded ml-2 text-indigo-50 hover:bg-indigo-500 " onClick={handleFilter}>Search</button>
+                                <button
+                                    className=" px-4 py-2 text-sm font-semibold transition duration-150 bg-indigo-600 rounded ml-2 text-indigo-50 hover:bg-indigo-500 "
+                                    onClick={handleFilter}
+                                >
+                                    Search
+                                </button>
                                 <div>
                                     {/* <form onSubmit={logout}>
                                         <button
@@ -89,13 +95,17 @@ export default function Index({ users, filters }) {
                                     users.data.map((user, index) => (
                                         <tr key={index}>
                                             <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                                <a href={`/users/${user.id}/show`}>
+                                                <a
+                                                    href={`/users/${user.id}/show`}
+                                                >
                                                     <div className="flex items-center">
                                                         <div className="flex-shrink-0 w-10 h-10">
                                                             {user.image ? (
                                                                 <img
                                                                     className="w-10 h-10 rounded-full"
-                                                                    src={user.image}
+                                                                    src={
+                                                                        user.image
+                                                                    }
                                                                     alt=""
                                                                 />
                                                             ) : (
@@ -121,7 +131,9 @@ export default function Index({ users, filters }) {
                                             </td>
                                             <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                                 <p className="text-gray-900 whitespace-no-wrap">
-                                                    {formatDate(user.created_at)}
+                                                    {formatDate(
+                                                        user.created_at
+                                                    )}
                                                 </p>
                                             </td>
                                             <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
@@ -129,7 +141,8 @@ export default function Index({ users, filters }) {
                                                     className={`relative inline-block px-3 py-1 font-semibold leading-tight ${
                                                         user.status === "active"
                                                             ? "text-green-900"
-                                                            : user.status === "inactive"
+                                                            : user.status ===
+                                                              "inactive"
                                                             ? "text-orange-900"
                                                             : "text-red-900"
                                                     }`}
@@ -137,9 +150,11 @@ export default function Index({ users, filters }) {
                                                     <span
                                                         aria-hidden
                                                         className={`absolute inset-0 ${
-                                                            user.status === "active"
+                                                            user.status ===
+                                                            "active"
                                                                 ? "bg-green-200"
-                                                                : user.status === "inactive"
+                                                                : user.status ===
+                                                                  "inactive"
                                                                 ? "bg-orange-200"
                                                                 : "bg-red-200"
                                                         } opacity-50 rounded-full`}
@@ -162,7 +177,10 @@ export default function Index({ users, filters }) {
                                 )}
                             </tbody>
                         </table>
-                        <Pagination currentPage={users.meta.current_page} lastPage={users.meta.last_page} />
+                        <Pagination
+                            currentPage={users.meta.current_page}
+                            lastPage={users.meta.last_page}
+                        />
                     </div>
                 </div>
             </div>

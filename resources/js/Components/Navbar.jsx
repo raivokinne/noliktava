@@ -1,6 +1,4 @@
 import { useForm } from "@inertiajs/react";
-import { Link } from "@inertiajs/react";
-
 
 const Navbar = () => {
     const { data, setData, delete: destroy, processing } = useForm({});
@@ -29,19 +27,19 @@ const Navbar = () => {
                         </li>
 
                         <li className="mr-6">
-                            <Link href="/reports">Reports</Link>
+                            <a href="/reports">Reports</a>
                         </li>
 
                         <li className="mr-6">
-                            <Link href="/users">Users</Link>
+                            <a href="/users">Users</a>
                         </li>
 
                         <li className="mr-6">
-                            <Link href="/shelves">Shelves</Link>
+                            <a href="/shelves">Shelves</a>
                         </li>
 
                         <li className="mr-6">
-                            <Link href="/products">Products</Link>
+                            <a href="/products">Products</a>
                         </li>
                     </ul>
                     <ul className="flex items-center">

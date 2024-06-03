@@ -11,7 +11,8 @@ class ReportsController extends Controller
     public function index()
     {
         return Inertia::render(
-            'Reports/Index', [
+            'Reports/Index',
+            [
                 'reports' => Reports::all(),
             ]
         );
@@ -81,6 +82,6 @@ class ReportsController extends Controller
                 'name' => 'Report Update',
             ]
         );
-        return redirect()->route('report.index');
+        return redirect()->route('reports.index');
     }
 }
