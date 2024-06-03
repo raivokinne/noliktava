@@ -1,135 +1,56 @@
 import Authenticated from "@/Layouts/AuthedLayout";
 
-export default function Index({ products }) {
-    const submit = (e) => {
-        e.preventDefault();
-        // Your form submission logic here
-    };
-
+export default function Index({ products, auth }) {
+    console.log(products);
     return (
         <>
             <Authenticated>
-                <div className="px-4 py-4 -mx-4 grid place-items-center overflow-x-auto sm:-mx-8 sm:px-8">
-                    <div className="inline-block w-[1400px] overflow-hidden rounded-lg shadow">
-                        <div className=" bg-gray-700 justify-center h-4 w-max" >
+                <section className="grid mt-32 place-items-center">
+                    <div className="grid grid-cols-4 place-items-center gap-10 w-[1400px]">
+                        {products.length > 0 ? (
+                            <>
+                                {products.map((product) => (
+                                    <article
+                                        key={product.id}
+                                        className="p-8 w-[300px] h-[400px] bg-white rounded-md border border-black"
+                                    >
+                                        <a
+                                            href={`/products/${product.id}/show`}
+                                        >
+                                            <img
+                                                src={`/storage/products/${product.image}`}
+                                                alt={product.name}
+                                                className="object-cover w-full rounded-md"
+                                            />
+                                        </a>
+                                        <div className="w-full border-t-2 border-black">
+                                            <h1 className="mt-4 text-xl font-semibold">
+                                                {product.name}
+                                            </h1>
+                                            <p className="font-bold text-green-500">
+                                                ${product.price}
+                                            </p>
+                                        </div>
+                                    </article>
+                                ))}
+                            </>
+                        ) : (
+                            <>
+                                <p>No products found</p>
+                            </>
+                        )}
 
-                        </div>
-                        <table className="min-w-full mt-20 leading-normal">
-                            <thead>
-                                <tr>
-                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                        Id
-                                    </th>
-                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                        Name
-                                    </th>
-                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                        Price
-                                    </th>
-                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                        Date
-                                    </th>
-                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                        Condition
-                                    </th>
-                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                        Description
-                                    </th>
-                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                        Stock
-                                    </th>
-                                    <th className="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                        Settings
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {products.length > 0 ? (
-                                    products.map((product, index) => (
-                                        <tr key={index}>
-                                            <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                                <div className="flex items-center">
-                                                    <div className="ml-3">
-                                                        <p className="text-gray-900 whitespace-no-wrap">
-                                                            {product.id}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    {product.name}
-                                                </p>
-                                            </td>
-                                            <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    {product.price}
-                                                </p>
-                                            </td>
-                                            <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    {product.date}
-                                                </p>
-                                            </td>
-                                            <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    {product.condition}
-                                                </p>
-                                            </td>
-                                            <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    {product.description}
-                                                </p>
-                                            </td>
-                                            <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                                <p className="text-gray-900 whitespace-no-wrap">
-                                                    {product.stock}
-                                                </p>
-                                            </td>
-                                            <td className=" text-sm bg-white border-b border-gray-200">
-                                                <div className="flex gap-2 items-center">
-                                                       <div>
-                                                        <a
-                                                            href={`/products/${product.id}/edit`}
-                                                            className="p-2 px-4 text-white bg-blue-500 rounded-full"
-                                                        >
-                                                            Edit
-                                                        </a>
-                                                    </div>
-                                                    <div>
-                                                        <form
-                                                            onSubmit={submit}
-                                                        >
-                                                            <button
-                                                                type="submit"
-                                                                className="p-2 px-4 text-white bg-red-500 rounded-full"
-                                                            >
-                                                                Delete
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                                
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan="3" className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                            <p>No products found</p>
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
+                        {auth.user.role === "admin" ||
+                            (auth.user.role === "worker" && (
+                                <a
+                                    href={`/products/create`}
+                                    className="w-12 h-12 p-2 px-4 text-2xl text-white bg-black rounded-full"
+                                >
+                                    +
+                                </a>
+                            ))}
                     </div>
-                    <a
-                        href="/products/create"
-                        className="p-2 px-4 bg-black text-2xl text-white rounded-full mt-4"
-                    >
-                        +
-                    </a>
-                </div>
+                </section>
             </Authenticated>
         </>
     );

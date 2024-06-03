@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
 import { useForm } from "@inertiajs/react";
-
+    
 export default function Show({ report }) {
     const { data, setData, delete: destroy, errors } = useForm({});
 

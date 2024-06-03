@@ -11,25 +11,44 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // $users = User::paginate(10);
+        $search = $request->input('search');
+        $users = User::query();
+
+        if ($search) {
+            $users->where('name', 'like', '%' . $search . '%');
+        }
+
+        $users = $users->latest()->paginate(10);
+
         return Inertia::render(
             'Users/Index', [
-                'users' => UserResource::collection(
-                    User::latest()->paginate(10)
-                ),
+                'users' => UserResource::collection($users),
+                'filters' => $request->only('search'),
+            ]
+        );
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $users = User::where('name', 'like', '%' . $search . '%')->paginate(10);
+
+        return Inertia::render(
+            'Users/Index', [
+                'users' => UserResource::collection($users),
+                'filters' => $request->only('search'),
             ]
         );
     }
 
     public function show(User $user)
     {
-        //dd(auth()->user());
         return Inertia::render(
             'Users/Profile/Show', [
                 'user' => $user,
-                // 'auth' => 
+                'auth' => Auth::user(),
             ]
         );
     }
@@ -38,7 +57,7 @@ class UserController extends Controller
     {
         return Inertia::render(
             'Users/Edit', [
-                'user' => $user,
+                'user' => new UserResource($user),
             ]
         );
     }
@@ -53,19 +72,17 @@ class UserController extends Controller
                 'role' => ['required', 'string', 'max:255'],
             ]
         );
-
-        $user->update($request->all());
-
+    
+        $data = $request->all();
+    
         if ($request->password) {
-            $user->update(
-                [
-                    'password' => bcrypt($request->password),
-                ]
-            );
+            $data['password'] = bcrypt($request->password);
+        } else {
+            unset($data['password']);
         }
-
-        $user->save();
-
+    
+        $user->update($data);
+    
         Reports::create(
             [
                 'user_id' => auth()->user()->id,
@@ -74,10 +91,11 @@ class UserController extends Controller
                 'name' => 'User Update',
             ]
         );
-
-        return redirect()->route('users.show', $user);
+    
+        // Pass the user parameter correctly here
+        return redirect()->route('users.show', ['user' => $user->id]);
     }
-
+    
     public function destroy(User $user)
     {
         $user->delete();
@@ -89,6 +107,8 @@ class UserController extends Controller
                 'name' => 'User Delete',
             ]
         );
+        // Pass the user parameter correctly here
         return redirect()->route('users.index');
     }
+    
 }
