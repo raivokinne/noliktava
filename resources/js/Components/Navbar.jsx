@@ -1,4 +1,5 @@
 import { useForm } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 
     const Navbar = () => {
         const { data, setData, delete: destroy, processing } = useForm({});
@@ -9,33 +10,33 @@ import { useForm } from "@inertiajs/react";
         };
         return (
             <>
-                <nav className="bg-white h-[80px] flex items-center justify-center w-full dark:text-white dark:bg-gray-900 fixed top-0">
+                <nav className="bg-white h-[80px] flex items-center justify-center w-full dark:text-white z-30 dark:bg-gray-900 fixed top-0">
                     <div className="container flex items-center justify-between w-full mx-[150px]">
                         <div className="flex items-center">
-                            <a href="/">
+                            <Link href="/">
                                 <img className="w-[60px] h-[60px] rounded-full" src="/assets/logo.jpg" alt="logo" />
-                            </a> 
+                            </Link> 
                         </div>
 
                     <ul className="flex items-center">
                         <li className="mr-6">
-                            <a href="/dashboard">Dashboard</a>
+                            <Link href="/dashboard">Dashboard</Link>
                         </li>
 
                         <li className="mr-6">
-                            <a href="/reports">Reports</a>
+                            <Link href="/reports">Reports</Link>
                         </li>
 
                         <li className="mr-6">
-                            <a href="/users">Users</a>
+                            <Link href="/users">Users</Link>
                         </li>
 
                         <li className="mr-6">
-                            <a href="/shelves">Shelves</a>
+                            <Link href="/shelves">Shelves</Link>
                         </li>
 
                         <li className="mr-6">
-                            <a href="/products">Products</a>
+                            <Link href="/products">Products</Link>
                         </li>
 
                            

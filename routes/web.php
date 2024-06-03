@@ -31,6 +31,9 @@ Route::middleware('auth')->group(
 
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/{user}/show', [UserController::class, 'show'])->name('users.show');
+        Route::post('/users/search', [UserController::class, 'search'])->name('users.search'); 
+        Route::put('/users/{users}/update', [UserController::class, 'update'])->name('users.update');
+
 
         Route::delete('/logout', [AuthController::class, 'destroy'])->name('logout');
 
@@ -76,6 +79,7 @@ Route::middleware(IsAdmin::class)->group(
         Route::post('/register', [AuthController::class, 'registerStore'])->name('register.store');
 
         Route::get('/users/{users}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::post('/users/search', [UserController::class, 'search'])->name('users.search'); 
         Route::delete('/users/{users}/destroy', [UserController::class, 'destroy'])->name('users.destroy');
         Route::put('/users/{users}/update', [UserController::class, 'update'])->name('users.update');
     }
