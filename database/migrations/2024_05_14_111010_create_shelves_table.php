@@ -16,7 +16,6 @@ return new class extends Migration
             function (Blueprint $table) {
                 $table->id();
                 $table->string('name');
-                $table->boolean('active')->default(true);
                 $table->foreignId('user_id')->constrained('users');
                 $table->foreignId('product_id')->constrained('products');
                 $table->timestamps();

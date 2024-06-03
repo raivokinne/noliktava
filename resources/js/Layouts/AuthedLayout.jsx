@@ -4,7 +4,7 @@ export default function Authenticated({ children }) {
     return (
         <>
             <Navbar />
-            <main>{children}</main>
+            <main className="h-screen">{children}</main>
         </>
     );
 }
