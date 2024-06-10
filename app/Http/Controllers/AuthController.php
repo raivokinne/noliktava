@@ -30,14 +30,6 @@ class AuthController extends Controller
             $request->session()->regenerate();
             $request->session()->regenerateToken();
 
-            Reports::create(
-                [
-                    'user_id' => auth()->user()->id,
-                    'description' => auth()->user()->name . ' logged in',
-                    'date' => now(),
-                    'name' => 'Login',
-                ]
-            );
 
             return redirect()->route('dashboard');
         }
@@ -59,14 +51,7 @@ class AuthController extends Controller
 
     public function destroy(Request $request)
     {
-        Reports::create(
-            [
-                'user_id' => auth()->user()->id,
-                'description' => auth()->user()->name . ' logged out',
-                'date' => now(),
-                'name' => 'Logout',
-            ]
-        );
+    
 
         User::where('id', auth()->user()->id)->update(
             [
@@ -106,14 +91,6 @@ class AuthController extends Controller
 
         auth()->login($user);
 
-        Reports::create(
-            [
-                'user_id' => auth()->user()->id,
-                'description' => auth()->user()->name . ' registered',
-                'date' => now(),
-                'name' => 'Register',
-            ]
-        );
 
         return redirect()->route('dashboard');
     }
