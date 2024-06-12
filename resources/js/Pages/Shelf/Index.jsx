@@ -1,7 +1,7 @@
 import { useForm } from "@inertiajs/react";
 import Authenticated from "@/Layouts/AuthedLayout";
 
-export default function Index({ shelves }) {
+export default function Index({ shelves, auth }) {
     const { data, setData, delete: destroy, processing } = useForm({});
 
     const submit = (e) => {
@@ -15,12 +15,16 @@ export default function Index({ shelves }) {
                 <div className="absolute top-28 right-[45%]">
                     <h1 className="text-3xl font-bold">Shelves</h1>
                 </div>
-                <a
-                    href="/shelves/create"
-                    className="absolute p-2 px-4 text-2xl text-white bg-black rounded-full right-20 top-28"
-                >
-                    +
-                </a>
+
+                {(auth.user.role === "admin" || auth.user.role === "worker") && (
+                    <a
+                        href="/shelves/create"
+                        className="absolute p-2 px-4 text-2xl text-white bg-black rounded-full right-20 top-28"
+                    >
+                        +
+                    </a>
+                )}
+
                 <div className="grid px-4 py-4 mt-40 overflow-x-auto place-items-center">
                     <div className="w-full overflow-hidden rounded-lg">
                         <table className="min-w-full leading-normal">
@@ -60,7 +64,9 @@ export default function Index({ shelves }) {
                                             </td>
                                             <td className="px-5 py-5 text-sm border-b border-gray-200">
                                                 <p className="text-gray-900 whitespace-no-wrap">
-                                                    {shelf.product.name}
+                                                    <a href={`/products/${shelf.product.id}/show`}>
+                                                        {shelf.product.name}
+                                                    </a>
                                                 </p>
                                             </td>
                                             <td className="flex items-center gap-4 px-5 py-5 text-sm border-b border-gray-200">

@@ -1,7 +1,6 @@
 import Authenticated from "@/Layouts/AuthedLayout";
 
 export default function Index({ products, auth }) {
-    console.log(products);
     return (
         <>
             <Authenticated>
@@ -18,7 +17,7 @@ export default function Index({ products, auth }) {
                                             href={`/products/${product.id}/show`}
                                         >
                                             <img
-                                                src={`/storage/products/${product.image}`}
+                                                src={`${product.image}`}
                                                 alt={product.name}
                                                 className="object-cover w-full rounded-md"
                                             />
@@ -40,15 +39,15 @@ export default function Index({ products, auth }) {
                             </>
                         )}
 
-                        {auth.user.role === "admin" ||
-                            (auth.user.role === "worker" && (
+                        {(auth.user.role === "admin" ||
+                            auth.user.role === "worker") && (
                                 <a
                                     href={`/products/create`}
                                     className="w-12 h-12 p-2 px-4 text-2xl text-white bg-black rounded-full"
                                 >
                                     +
                                 </a>
-                            ))}
+                            )}
                     </div>
                 </section>
             </Authenticated>

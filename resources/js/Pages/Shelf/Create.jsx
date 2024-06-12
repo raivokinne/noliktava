@@ -5,7 +5,6 @@ export default function Create({ auth, products }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         product_id: 0,
-        user_id: auth.user.id,
     });
 
     const submit = (e) => {

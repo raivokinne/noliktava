@@ -17,7 +17,10 @@ class ReportsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'description' => fake()->text(),
+            'date' => fake()->date(),
+            'user_id' => fake()->numberBetween(1, 100),
         ];
     }
 }

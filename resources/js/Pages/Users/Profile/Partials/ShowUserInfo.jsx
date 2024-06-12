@@ -152,7 +152,7 @@ export default function ShowUserInfo({ user, auth }) {
                             <h1 className="block font-semibold text-gray-700">
                                 Role
                             </h1>
-                            {auth.role === "admin" ? (
+                            {user.role === "admin" ? (
                                 <select
                                     name="role"
                                     value={data.role}

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
+use App\Models\Shelf;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -43,5 +45,7 @@ class DatabaseSeeder extends Seeder
                 'status' => 'active',
             ]
         );
+        Product::factory(100)->create();
+        Shelf::factory(100)->create();
     }
 }
